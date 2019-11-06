@@ -1,0 +1,393 @@
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
+@mixin forcontentstyle{
+	border: 1px solid #cecece;
+	border-radius: 20px;
+	padding: 10px;
+	text-align: justify;
+	color: #f5d67b;
+	background: #001628;
+}
+/*************************************/
+.wrapper {
+	min-height: 100vh;
+	display: grid;
+	width: 100%;
+	grid-gap: 5px;	
+	grid-template-columns: repeat (6, 1fr);
+	grid-template-rows: repeat (8, 1fr);
+	grid-template-areas:
+	"head head head head head head"
+	"sliderLeft sliderLeft content content content content"
+	"sliderLeft sliderLeft content content content content"
+	"sliderLeft sliderLeft content content content content"
+	"runnerLine runnerLine runnerLine runnerLine runnerLine runnerLine"
+	"articles articles articles articles articles articles"
+	"articles articles articles articles articles articles"
+	"footer footer footer footer footer footer";
+
+}
+/*Head section*/
+.head {
+	@include forcontentstyle();
+	grid-area: head;
+	font-weight: bolder;
+	display: grid;
+	width: 100%;
+	grid-gap: 5px;	
+	grid-template-columns: repeat (6, 1fr);
+	grid-template-rows: minmax(80px, 1fr);
+	grid-template-areas:
+	"logo . . . menu menu";
+}
+
+.logo {
+	@include forcontentstyle();
+	grid-area: logo;
+	font-weight: bolder;
+	padding: 10px;
+	background: url(../img/logo.jpg) no-repeat center;
+	background-size: 70%;
+}
+.menu {
+	@include forcontentstyle();
+	grid-area: menu;
+	font-weight: bolder;
+	display: grid;
+	overflow: hidden;
+	position: relative;
+	align-items: center;
+	text-align: center;
+	grid-auto-rows: 100px;
+		& ul {
+			list-style: none;
+			display: block;
+		}
+		& li {
+			display: inline;
+			line-height: 100px;
+			padding: 10px 10px;
+		}
+		& a {
+			cursor: pointer;			
+		}
+		& a:hover {
+			border-top: 1px solid #669900;
+		}
+
+}
+
+/*Slider*/
+.sliderLeft {
+	@include forcontentstyle();
+	grid-area: sliderLeft;
+	font-weight: bolder;
+	display: grid;
+	width: 100%;
+	grid-gap: 5px;	
+	grid-template-columns: repeat (2, 1fr);
+	grid-template-rows: repeat (4, 1fr);
+	overflow-y: scroll;
+	overflow-x: hidden;
+	grid-auto-flow: column;
+	grid-template-areas:
+	"leftArea rightArea"
+	}
+.sliderLeft div {
+	height: 100px;
+	& div:nth-child(odd){
+		background: url(../img/sidebar.jpg) no-repeat;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		background-size: 100%;
+		border-radius: 80%;
+	}
+	& div:nth-child(2n){
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		@include forcontentstyle();
+	}
+
+}
+.leftArea {
+	grid-area: leftArea;
+	grid-column: 1;
+}
+.rightArea {
+	margin-top: 100px;
+	grid-area: rightArea;
+	grid-column: 2;
+}
+
+/*Content*/
+.content {
+	@include forcontentstyle();
+	grid-area: content;
+	font-weight: bolder;
+	display: grid;
+	width: 100%;
+	grid-gap: 5px;
+	grid-auto-rows: 200px 200px 300px;
+	grid-template-columns: repeat (3, 1fr);
+	grid-template-rows: repeat (3, 1fr);
+	grid-template-areas:
+	"content1 content1 content1 . . ."
+	". . content2 content2 content2 content2"
+	"content3 content3 content3 content3 content3 content3";
+}
+.content1 {
+	@include forcontentstyle();
+	grid-area: content1;
+	font-weight: bolder;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	& div:first-child{
+		width: 50%;
+		height: 150px;
+		align-items: center;
+		border: none;
+	}
+	& div:last-child{
+		width: 50%;
+		height: 150px;
+		background: url(../img/content.jpg) no-repeat;
+		background-size: 100%;
+		border-radius: 80%;
+		width: 150px;
+		height: 150px;
+		border-radius: 50%;
+		background-size: 100%;
+		background-position: center;
+		border: none;
+	}
+}
+.content2 {
+	@include forcontentstyle();
+	grid-area: content2;
+	font-weight: bolder;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	& div:first-child{
+		width: 50%;
+		height: 150px;
+		background: url(../img/content.jpg) no-repeat;
+		background-size: 100%;
+		border-radius: 80%;
+		width: 150px;
+		height: 150px;
+		border-radius: 50%;
+		background-size: 100%;
+		background-position: center;
+		border: none;
+	}
+	& div:last-child{
+		width: 50%;
+		height: 150px;
+		border: none;
+	}
+}
+.content3 {
+	@include forcontentstyle();
+	grid-area: content3;
+	background: url(../img/rock.jpg) no-repeat;
+	background-size: 100%;
+	background-position: bottom;	
+}
+/*runnerLine*/
+.runnerLine {
+	@include forcontentstyle();
+	grid-area: runnerLine;
+	display: grid;
+	overflow: hidden;
+	position: relative;
+	grid-auto-rows: 100px;
+		& ul {
+			list-style: none;
+			display: block;
+			animation: text 5s infinite linear;
+			margin-left: -300px;
+
+		}
+		& ul:hover {
+			animation-play-state: paused;
+		}
+		& li {
+			display: inline;
+			line-height: 100px;
+			padding: 10px 10px;
+		}
+		& a {
+			cursor: pointer;
+		}
+		& a:hover {
+			border-top: 1px solid #669900;
+		}
+}
+@keyframes text {
+    0%{
+      transform: translate(0, 0);
+    }
+
+    100%{
+      transform: translate(100%, 0);
+    }
+  }
+/*Articles*/
+.articles {
+	@include forcontentstyle();
+	grid-area: articles;
+	font-weight: bolder;
+	display: grid;
+	width: 100%;
+	grid-gap: 5px;	
+	grid-template-columns: repeat (2, 1fr);
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas:
+	"articlesLeftCol1 articlesRightCol1"
+	"articlesLeftCol2 articlesRightCol2";
+}
+.articlesLeftCol1 {
+	grid-area: articlesLeftCol1;
+	@include forcontentstyle();
+}
+.articlesRightCol1 {
+	grid-area: articlesRightCol1;
+	@include forcontentstyle();
+}
+.articlesLeftCol2 {
+	grid-area: articlesLeftCol2;
+	@include forcontentstyle();
+}
+.articlesRightCol2 {
+	grid-area: articlesRightCol2;
+	@include forcontentstyle();
+}
+/*Footer*/
+.footer {
+	@include forcontentstyle();
+	grid-area: footer;
+	height: 100%;
+	min-height: 400px;
+	background: url(../img/hell.jpg) no-repeat;
+	background-size: 100%;
+	background-position: center;
+}
+@media screen and (max-width: 768px) {
+    .wrapper {
+        grid-template-areas:
+		"head head head head head head"
+		"sliderLeft sliderLeft sliderLeft sliderLeft content content"
+		"sliderLeft sliderLeft sliderLeft sliderLeft content content"
+		"sliderLeft sliderLeft sliderLeft sliderLeft content content"
+		"runnerLine runnerLine runnerLine runnerLine runnerLine runnerLine"
+		"articles articles articles articles articles articles"
+		"articles articles articles articles articles articles"
+		"footer footer footer footer footer footer";
+	}
+	.head {
+		z-index: 99;
+		position: sticky;
+		top: 0;
+		grid-template-areas:
+		". . logo logo . ."
+		"menu menu menu menu menu menu";
+	}
+	.content {
+		grid-template-areas:
+		"content1 content1 content1"
+		"content2 content2 content2"
+		"content3 content3 content3";
+	}
+	.articles {
+		grid-template-areas:
+		"articlesLeftCol1"
+		"articlesRightCol1"
+		"articlesLeftCol2"
+		"articlesRightCol2";
+	}
+	.menu {
+		& li:first-child {
+			float:left;
+		}
+		& li:last-child {
+			float:right;
+		}
+	}
+}
+@media screen and (max-width: 576px) {
+    .wrapper {
+        grid-template-areas:
+		"head head head head head head"
+		"content content content content content content"
+		"content content content content content content"
+		"sliderLeft sliderLeft sliderLeft sliderLeft sliderLeft sliderLeft"
+		"runnerLine runnerLine runnerLine runnerLine runnerLine runnerLine"
+		"articles articles articles articles articles articles"
+		"articles articles articles articles articles articles"
+		"footer footer footer footer footer footer";
+	}
+	.head {
+		position: relative;
+		grid-template-areas:
+		". . logo logo . ."
+		"menu . . . . menu";
+	}
+	.content {
+		grid-template-areas:
+		"content1 content1 content1"
+		"content2 content2 content2"
+		"content3 content3 content3";
+	}
+	.articles {
+		grid-template-areas:
+		"articlesLeftCol1"
+		"articlesRightCol1"
+		"articlesLeftCol2"
+		"articlesRightCol2";
+	}
+	.menu {
+		& li:first-child {
+			float:left;
+		}
+		& li:last-child {
+			float:right;
+		}
+	}
+	.sliderLeft div {
+		height: 100px;
+		& div:nth-child(odd){
+			background: url(../img/sidebar.jpg) no-repeat;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			background-size: 100%;
+			border-radius: 70%;
+			width: 100px;
+			height: 100px;
+		}
+		& div:nth-child(2n){
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			@include forcontentstyle();
+		}
+	
+	}
+}
+
+
+
